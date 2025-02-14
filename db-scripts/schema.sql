@@ -1,0 +1,5 @@
+CREATE TABLE province (
+    id INT PRIMARY KEY,
+    ShortName VARCHAR(3) NOT NULL,
+    Name VARCHAR(255) NOT NULL
+);
