@@ -4,7 +4,7 @@ services:
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: supposed-to-be-secret
-      MYSQL_DATABASE: app_db
+      MYSQL_DATABASE: Province
     ports:
       - "3306:3306"
     volumes:
