@@ -1,6 +1,10 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.UUID;
 
 /**
  * ProvinceClient: client application
@@ -15,7 +19,30 @@ public class ProvinceClient {
       // Lookup server object
       IRemoteProvince rp = (IRemoteProvince) registry.lookup("Province"); 
 
-      // Save province
+      BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+    
+      System.out.println("Vamos a agregar una nueva ciudad");
+      System.out.println("Ingresa el nombre de la ciudad: ");
+      String name = userInput.readLine();
+      System.out.println("Ingresa la abreviatura de la ciudad (de 3 letras solamente): ");
+      String shortName = userInput.readLine();
+      while (shortName.length() > 3) {
+        System.out.println("Ingresa una abreviatura válida (de 3 letras solamente): ");
+        shortName = userInput.readLine();
+      }
+      System.out.println("Saving provinces...");
+      Province newCity = new Province(shortName, name);
+      rp.save(newCity);
+
+      System.out.println("Display all provinces");
+      ArrayList<Province> arrProv = rp.findAll(); 
+      for (Province p : arrProv) { 
+        System.out.println(p.toString()); 
+      } 
+
+
+      // Save province 
+      /*
       Province mid = new Province(1, "MID", "Mérida"); 
       Province ens = new Province(2, "ENS", "Ensenada"); 
       Province cdmx = new Province(3, "CMX", "Ciudad de México"); 
@@ -50,6 +77,7 @@ public class ProvinceClient {
 
       System.out.println("Delete all provinces"); 
       rp.deleteAll(); 
+      */
 
     } catch (Exception e) { 
       System.out.println(e); 

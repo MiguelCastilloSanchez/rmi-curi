@@ -19,6 +19,10 @@ public class Province implements Serializable {
     shortName_ = shortName; 
     name_ = name; 
   } 
+  public Province(String shortName, String name){
+    shortName_ = shortName; 
+    name_ = name; 
+  }
   
   public int getId() { return id_; }
   public void setId(int id) { id_ = id; }
